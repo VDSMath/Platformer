@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (dashTimer <= .5f && dashing)
         {
-            if (Input.GetButton("Fire2"))
+            if (Input.GetButton("Fire2") && (myRB.velocity != Vector2.zero))
             {
                 movementMultiplier = 8;
                 dashTimer += Time.deltaTime;

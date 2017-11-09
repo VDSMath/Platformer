@@ -42,12 +42,23 @@ public class Sign : MonoBehaviour {
         if (startRefresh)
         {
             RefreshView();
+            TextboxPosition();
         }
 
         if (listenChoice)
         {
             ListenForChoice();
         }
+
+    }
+
+    void TextboxPosition()
+    {
+        Vector2 pos = gameObject.transform.position; 
+        Vector2 viewportPoint = Camera.main.WorldToViewportPoint(pos);  
+        
+        textBoxBackground.rectTransform.anchorMin = viewportPoint;
+        textBoxBackground.rectTransform.anchorMax = viewportPoint;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,7 +82,7 @@ public class Sign : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !startRefresh)
             {
                 Observe(collision.gameObject);
             }
@@ -80,7 +91,7 @@ public class Sign : MonoBehaviour {
 
     public void Observe(GameObject observerT)
     {
-        imageBackground.gameObject.SetActive(true);
+        //imageBackground.gameObject.SetActive(true);
         textBoxBackground.gameObject.SetActive(true);
         //observer = observerT;
         //observer.GetComponent<PlayerInteractor>().canObserve = false;
@@ -97,6 +108,7 @@ public class Sign : MonoBehaviour {
 
     void RefreshView()
     {
+        Debug.Log(story.canContinue);
         if (story.canContinue)
         {
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.E))
@@ -119,12 +131,16 @@ public class Sign : MonoBehaviour {
         }
         else
         {
-            EndStory();
+            if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.E))
+            {
+                EndStory();
+            }
         }
     }
 
     void EndStory()
     {
+        startRefresh = false;
         imageBackground.gameObject.SetActive(false);
         textBoxBackground.gameObject.SetActive(false);
     }

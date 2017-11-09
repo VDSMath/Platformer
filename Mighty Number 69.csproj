@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\Camera\FollowPlayer.cs" />
+    <Compile Include="Assets\Code\NPCs\Enemies\Test.cs" />
     <Compile Include="Assets\Code\Objects\AObservable.cs" />
     <Compile Include="Assets\Code\Objects\Mem.cs" />
     <Compile Include="Assets\Code\Objects\Sign.cs" />
