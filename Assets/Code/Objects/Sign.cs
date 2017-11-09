@@ -108,7 +108,6 @@ public class Sign : MonoBehaviour {
 
     void RefreshView()
     {
-        Debug.Log(story.canContinue);
         if (story.canContinue)
         {
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.E))
