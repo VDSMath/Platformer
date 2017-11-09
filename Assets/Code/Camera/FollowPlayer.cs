@@ -8,10 +8,12 @@ public class FollowPlayer : MonoBehaviour {
     private float followSpeed;
 
     private GameObject player;
+    GameObject playerCamPos;
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.Find("Player");
+        playerCamPos = player.transform.Find("Camera Position").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +25,7 @@ public class FollowPlayer : MonoBehaviour {
     {
         float tempZ = transform.position.z;
 
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, followSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, playerCamPos.transform.position, followSpeed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, tempZ);
     }
